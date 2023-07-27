@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .reg-style{
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        width:300px;
+    }
+
+</style>
+</head>
+<body>
+  <form id="reg-form" class="reg-style">
+    <h3>Email:-</h3>
+    <input type="email"  autocomplete="off" id="username" placeholder="username"/>
+<h3>Password:-</h3>
+<input type="password" autocomplete="off" id="password" placeholder="password"/>
+<input type="submit" value="Submit Form"/>
+  </form>
+  <script>
+    const form = document.getElementById('reg-form')
+    form.addEventListener('submit',registerUser)
+    function registerUser(event){
+        event.preventDefault()
+        const username= document.getElementById('username').nodeValue
+        const password = document.getElementById('password').nodeValue
+    }
+    const result = await fetch('/api/register',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            username,
+            password
+
+        })
+    }).then((res)=>res.json())
+  </script>
+</body>
+</html>
